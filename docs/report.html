@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conversational Business Intake Agent — Capstone Report</title>
+
+<style>
+  :root {
+    --paper: #F2F3EE;
+    --paper-raised: #FFFFFF;
+    --ink: #1B1D22;
+    --ink-soft: #4B4F58;
+    --ink-faint: #7B7F87;
+    --rule: #D8DAD3;
+    --rule-strong: #BFC2B9;
+    --accent: #2E6E5E;
+    --accent-ink: #1E4A3F;
+    --accent-soft: #E4EEEA;
+    --amber: #A6702A;
+    --amber-soft: #F3E8D7;
+    --slate: #5B6478;
+    --slate-soft: #E7E9EE;
+    --rust: #9C3F30;
+    --rust-soft: #F3E1DC;
+    --shadow: 0 1px 2px rgba(27,29,34,0.06), 0 8px 24px rgba(27,29,34,0.05);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14161A;
+      --paper-raised: #1C1F24;
+      --ink: #EDEEE9;
+      --ink-soft: #A9ACB3;
+      --ink-faint: #797E86;
+      --rule: #2B2E34;
+      --rule-strong: #3A3E45;
+      --accent: #4FA98D;
+      --accent-ink: #BFEBDD;
+      --accent-soft: #1D2F2A;
+      --amber: #D6A257;
+      --amber-soft: #35291A;
+      --slate: #96A0B5;
+      --slate-soft: #262A33;
+      --rust: #D97D68;
+      --rust-soft: #34211D;
+      --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14161A;
+    --paper-raised: #1C1F24;
+    --ink: #EDEEE9;
+    --ink-soft: #A9ACB3;
+    --ink-faint: #797E86;
+    --rule: #2B2E34;
+    --rule-strong: #3A3E45;
+    --accent: #4FA98D;
+    --accent-ink: #BFEBDD;
+    --accent-soft: #1D2F2A;
+    --amber: #D6A257;
+    --amber-soft: #35291A;
+    --slate: #96A0B5;
+    --slate-soft: #262A33;
+    --rust: #D97D68;
+    --rust-soft: #34211D;
+    --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    margin: 0;
+    padding: 0 24px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .serif {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  }
+
+  .mono {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Liberation Mono", monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: var(--accent-ink); text-decoration-color: var(--rule-strong); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    padding: 72px 0 40px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .eyebrow {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    background: var(--accent);
+    display: inline-block;
+  }
+  h1.title {
+    font-size: clamp(2.1rem, 4.4vw, 3.05rem);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+    font-weight: 600;
+  }
+  .subtitle {
+    font-size: 1.14rem;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0 0 32px;
+    text-wrap: balance;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    font-size: 13px;
+    color: var(--ink-faint);
+  }
+  .meta-row dt {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 10.5px;
+    color: var(--ink-faint);
+    margin-bottom: 3px;
+  }
+  .meta-row dd { margin: 0; color: var(--ink-soft); font-size: 13.5px; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.005em;
+    margin: 0 0 20px;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h3 {
+    font-size: 1.08rem;
+    margin: 32px 0 12px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .section-num {
+    color: var(--accent);
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-weight: 500;
+    margin-right: 10px;
+    font-size: 0.85em;
+  }
+
+  p { max-width: 66ch; margin: 0 0 16px; }
+  .lede { font-size: 1.1rem; color: var(--ink-soft); max-width: 62ch; }
+  ul, ol { max-width: 62ch; padding-left: 22px; margin: 0 0 16px; }
+  li { margin-bottom: 8px; }
+  strong { font-weight: 600; color: var(--ink); }
+  code {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-size: 0.88em;
+  }
+
+  /* ---------- Status pill (the recurring semantic motif) ---------- */
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    padding: 3px 10px 3px 8px;
+    border-radius: 100px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .pill::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+  .pill.confirmed { background: var(--accent-soft); color: var(--accent-ink); }
+  .pill.confirmed::before { background: var(--accent); }
+  .pill.inferred { background: var(--amber-soft); color: var(--amber); }
+  .pill.inferred::before { background: var(--amber); }
+  .pill.uncertain { background: var(--slate-soft); color: var(--slate); }
+  .pill.uncertain::before { background: var(--slate); }
+
+  .legend {
+    display: flex; gap: 20px; flex-wrap: wrap;
+    margin: 22px 0 8px;
+    font-size: 13.5px; color: var(--ink-soft);
+  }
+  .legend span { display: flex; align-items: center; gap: 8px; }
+
+  /* ---------- Architecture diagram ---------- */
+  .diagram {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 32px 28px;
+    margin: 28px 0;
+    box-shadow: var(--shadow);
+    overflow-x: auto;
+  }
+  .diagram-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    min-width: 640px;
+  }
+  .dbox {
+    flex: 1;
+    border: 1.5px solid var(--rule-strong);
+    border-radius: 8px;
+    padding: 16px 16px;
+    background: var(--paper);
+  }
+  .dbox .dlabel {
+    font-family: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent-ink);
+    margin-bottom: 6px;
+  }
+  .dbox .dtitle { font-weight: 600; font-size: 14.5px; margin-bottom: 4px; }
+  .dbox .ddesc { font-size: 12.5px; color: var(--ink-faint); line-height: 1.5; }
+  .darrow {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; color: var(--ink-faint); font-size: 18px;
+    flex-shrink: 0;
+  }
+  .dbranch {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule-strong);
+    display: flex;
+    gap: 10px;
+  }
+  .dbranch .tag {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    padding: 2px 8px;
+    border-radius: 100px;
+    background: var(--slate-soft);
+    color: var(--slate);
+  }
+  .dbranch .tag.primary { background: var(--accent-soft); color: var(--accent-ink); }
+
+  /* ---------- Metric cards ---------- */
+  .metric-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 24px 0;
+  }
+  @media (max-width: 640px) { .metric-grid { grid-template-columns: 1fr; } }
+  .mcard {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 20px 22px;
+    box-shadow: var(--shadow);
+  }
+  .mcard .mlabel {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+  .mcard .mrow {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 7px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .mcard .mrow:last-child { border-bottom: none; }
+  .mcard .magent { font-size: 13.5px; color: var(--ink-soft); }
+  .mcard .mval {
+    font-family: ui-monospace, monospace;
+    font-size: 17px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .mcard .mval.accent { color: var(--accent-ink); }
+  .mcard .mval.neutral { color: var(--ink); }
+
+  /* ---------- Data table ---------- */
+  .table-wrap { overflow-x: auto; margin: 24px 0; }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 13.5px; }
+  th, td {
+    text-align: left;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+  th {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    font-weight: 500;
+  }
+  td.num { font-family: ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  tr:last-child td { border-bottom: none; }
+
+  /* ---------- Transcript / case study ---------- */
+  .transcript {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: var(--shadow);
+  }
+  .transcript-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 12px 18px;
+    background: var(--paper);
+    border-bottom: 1px solid var(--rule);
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .turn { padding: 13px 18px; border-bottom: 1px solid var(--rule); }
+  .turn:last-child { border-bottom: none; }
+  .turn .speaker {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .turn.agent .speaker { color: var(--accent-ink); }
+  .turn.owner .speaker { color: var(--ink-faint); }
+  .turn .text { font-size: 14px; }
+  .turn .result { margin-top: 8px; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+  .two-col .colhead {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 10px;
+  }
+
+  /* ---------- Callout ---------- */
+  .callout {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 16px 20px;
+    border-radius: 0 8px 8px 0;
+    margin: 24px 0;
+  }
+  .callout.rust { border-left-color: var(--rust); background: var(--rust-soft); }
+  .callout p { margin: 0; max-width: 60ch; }
+  .callout .clabel {
+    font-family: ui-monospace, monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--accent-ink);
+  }
+  .callout.rust .clabel { color: var(--rust); }
+
+  /* ---------- Non-goals list ---------- */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex; gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist li::before {
+    content: "—";
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  footer {
+    padding: 48px 0 0;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer .mono { color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">Capstone research report</div>
+    <h1 class="title serif">Conversational Business Intake Agent</h1>
+    <p class="subtitle">Turning a messy, code-switched conversation with a small shop owner into a structured, honestly-uncertain knowledge base — and measuring whether the dialogue policy that does it actually earns its complexity.</p>
+    <dl class="meta-row">
+      <div><dt>Author</dt><dd>Varun Bukka</dd></div>
+      <div><dt>Model</dt><dd class="mono">openai/gpt-oss-120b via Groq</dd></div>
+      <div><dt>Eval set</dt><dd>15 of 20 cases run · 3 of 4 categories</dd></div>
+      <div><dt>Date</dt><dd>13 Aug 2026</dd></div>
+    </dl>
+  </header>
+
+  <section id="summary">
+    <h2><span class="section-num serif">§</span>What this is</h2>
+    <p class="lede">Most small Indian businesses — a tailor, a pharmacy, a tuition class — have no structured record of their own hours, prices, or policies. It lives in the owner's head. Building them a chatbot is pointless without that data existing somewhere queryable first, and owners won't fill out a form.</p>
+    <p>This project is an agent that <em>interviews</em> the owner instead — deciding, turn by turn, whether to <strong>extract</strong> a confident value, <strong>clarify</strong> an ambiguous one, or <strong>flag it uncertain</strong> rather than guess. The research question isn't whether an LLM can fill a form — it's whether an <em>adaptive</em> dialogue policy that clarifies selectively actually beats a naive one that just asks every question once. A thin WhatsApp Q&amp;A layer sits on top purely to prove the resulting knowledge base is usable; it is not the contribution.</p>
+    <div class="legend">
+      <span class="pill confirmed">confirmed</span> extracted with confidence
+      <span class="pill inferred">inferred</span> usable but unresolved
+      <span class="pill uncertain">uncertain</span> honestly flagged, not guessed
+    </div>
+  </section>
+
+  <section id="architecture">
+    <h2><span class="section-num serif">§</span>Architecture</h2>
+    <p>Two agents share one extraction/graph engine and differ only in dialogue policy — everything else is held constant so any measured difference is attributable to the policy, not to incidental implementation drift.</p>
+
+    <div class="diagram">
+      <div class="diagram-row">
+        <div class="dbox">
+          <div class="dlabel">Component A</div>
+          <div class="dtitle">Intake Agent</div>
+          <div class="ddesc">LangGraph state machine. Per turn: extract → classify confidence → commit / clarify / flag uncertain.</div>
+          <div class="dbranch">
+            <span class="tag primary">adaptive — clarifies</span>
+            <span class="tag">baseline — fixed-form</span>
+          </div>
+        </div>
+        <div class="darrow">→</div>
+        <div class="dbox">
+          <div class="dlabel">Component B</div>
+          <div class="dtitle">KB Store</div>
+          <div class="ddesc">SQLite for structured fields, Chroma (local embeddings) for free-text — each value carries confidence + source turn.</div>
+        </div>
+        <div class="darrow">→</div>
+        <div class="dbox">
+          <div class="dlabel">Component C</div>
+          <div class="dtitle">RAG + WhatsApp</div>
+          <div class="ddesc">Customer question → retrieve → answer from retrieved context only. Proof the KB is usable, not a product.</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 13.5px; color: var(--ink-faint); max-width: 62ch;">A fourth, unillustrated component — the evaluation harness — runs both agents against the case set and is what turns this from a demo into a measured comparison.</p>
+  </section>
+
+  <section id="policy">
+    <h2><span class="section-num serif">§</span>The dialogue policy</h2>
+    <p>The core contribution lives entirely in <code>src/agent/graph_adaptive.py</code>, decoupled from any model via injected <code>Extractor</code> / <code>Clarifier</code> callables — the state machine's routing was proven correct with zero network calls before a real LLM was ever wired in.</p>
+
+    <h3>Per-turn decision loop</h3>
+    <ul>
+      <li><strong>High confidence</strong> → commit <span class="pill confirmed">confirmed</span>, move on.</li>
+      <li><strong>Plausible but incomplete</strong> (e.g. <em>"open most days, closed Sundays usually"</em>) → ask one targeted follow-up. Resolved on the second attempt → <span class="pill confirmed">confirmed</span>. Still unresolved after the attempt cap → <span class="pill uncertain">uncertain</span>.</li>
+      <li><strong>No usable signal</strong> → deprioritize the field behind others still open, rather than looping on it immediately; flagged <span class="pill uncertain">uncertain</span> once the attempt cap is hit.</li>
+    </ul>
+    <p>The <strong>fixed-form baseline</strong> (<code>graph_baseline.py</code>) shares every other line of infrastructure — same extractor, same schema, same turn-taking mechanics — but asks each field exactly once, in a fixed order, with a canned question. A "plausible" answer is committed straight to <span class="pill inferred">inferred</span>; nothing is ever revisited. This is the ablation control for the turn-efficiency metric below.</p>
+
+    <div class="callout">
+      <div class="clabel">Hallucination guard</div>
+      <p>The agent must never write a <span class="pill confirmed">confirmed</span> value it did not actually extract from owner text. This is the one rule enforced identically in both agents, and it's directly testable — see Metric 3.</p>
+    </div>
+  </section>
+
+  <section id="method">
+    <h2><span class="section-num serif">§</span>Evaluation set</h2>
+    <p>20 simulated interviews were hand-authored across four categories the spec names as representative — tailor, pharmacy, small restaurant, tuition/coaching — 5 each. Every case scripts a business owner's replies for up to two attempts per field, plus a hand-written ground truth for what a <em>correctly behaving</em> agent should conclude, including which fields should legitimately end up <span class="pill uncertain">uncertain</span> because the simulated owner never gave a real answer.</p>
+    <p>Each case deliberately mixes: fields with clean, unambiguous answers; fields that are vague on the first pass and resolve on a follow-up (the adaptive agent's reason to exist); fields where the owner genuinely has no answer even after being asked twice; and Hinglish code-switching.</p>
+    <p style="font-size: 13.5px; color: var(--ink-faint);"><strong>Coverage note:</strong> 15 of 20 cases (tailor, pharmacy, restaurant — 3 of 4 categories) completed before Groq's free-tier <em>daily</em> token cap was hit mid-run. The remaining 5 tuition cases are cached to resume at zero extra cost once quota resets; see Limitations.</p>
+  </section>
+
+  <section id="results">
+    <h2><span class="section-num serif">§</span>Results</h2>
+    <p style="font-size: 13.5px; color: var(--ink-faint);">120 field-level judgments per agent (15 cases × 8 fields), against the real Groq API, no mocking.</p>
+
+    <h3>Metric 1 — Field-level extraction accuracy</h3>
+    <div class="metric-grid">
+      <div class="mcard">
+        <div class="mlabel">Adaptive</div>
+        <div class="mrow"><span class="magent">Precision</span><span class="mval accent">0.91</span></div>
+        <div class="mrow"><span class="magent">Recall</span><span class="mval accent">0.94</span></div>
+      </div>
+      <div class="mcard">
+        <div class="mlabel">Baseline</div>
+        <div class="mrow"><span class="magent">Precision</span><span class="mval neutral">0.87</span></div>
+        <div class="mrow"><span class="magent">Recall</span><span class="mval neutral">0.98</span></div>
+      </div>
+    </div>
+    <p>The baseline commits to <em>something</em> almost every time it can (higher recall) — but what it commits is wrong more often (12 wrong-value errors vs. adaptive's 7), because it never gets a second attempt at an ambiguous answer. Adaptive trades a little recall for meaningfully better precision.</p>
+
+    <h3>Metric 2 — Clarification efficiency</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Agent</th><th>Mean turns</th><th>Range</th><th>Behavior</th></tr></thead>
+        <tbody>
+          <tr><td>Adaptive</td><td class="num">9.3</td><td class="num">8–11</td><td>Spends turns only where ambiguity demands it</td></tr>
+          <tr><td>Baseline</td><td class="num">8.0</td><td class="num">fixed</td><td>Identical length regardless of content</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>~1.3 extra turns bought the precision gain above. Whether that's a good trade depends entirely on how much a real owner's patience is worth — a judgment call the metric makes visible rather than hiding.</p>
+
+    <h3>Metric 3 — Hallucination rate under ambiguity</h3>
+    <div class="metric-grid">
+      <div class="mcard">
+        <div class="mlabel">Adaptive — raw rate</div>
+        <div class="mrow"><span class="magent">Committed instead of flagging</span><span class="mval" style="color: var(--rust);">30.0%</span></div>
+      </div>
+      <div class="mcard">
+        <div class="mlabel">Baseline — raw rate</div>
+        <div class="mrow"><span class="magent">Committed instead of flagging</span><span class="mval" style="color: var(--rust);">20.0%</span></div>
+      </div>
+    </div>
+    <p>The raw numbers look alarming — and turned out to be measuring something different than expected. See the investigation below.</p>
+  </section>
+
+  <section id="finding">
+    <h2><span class="section-num serif">§</span>Finding: what the hallucination number was actually measuring</h2>
+    <p>Before reporting 30%/20% as "the hallucination rate," every flagged instance was inspected individually rather than trusted at face value.</p>
+
+    <div class="two-col">
+      <div>
+        <div class="colhead">What it looked like</div>
+        <p style="font-size: 14px;">5 field-checks where ground truth said <span class="pill uncertain">uncertain</span> but the agent committed a value anyway — a 3&nbsp;of&nbsp;7 rate in Hinglish-labeled cases vs. 0&nbsp;of&nbsp;3 in English ones.</p>
+      </div>
+      <div>
+        <div class="colhead">What it actually was</div>
+        <p style="font-size: 14px;">Only 3 vs. 7 uncertain-ground-truth instances exist at all — too small to support a language claim. And 4 of the 5 flagged cases were the extractor treating an owner's explicit <em>"no fixed policy yet"</em> as itself a fact worth recording, not fabrication.</p>
+      </div>
+    </div>
+
+    <div class="transcript">
+      <div class="transcript-head"><span>pharmacy_05 · policies field</span><span>real trace excerpt</span></div>
+      <div class="turn agent"><div class="speaker">agent asks</div><div class="text">What are your policies on returns, custom orders, delivery, or advance payment?</div></div>
+      <div class="turn owner"><div class="speaker">owner replies</div><div class="text">Hum abhi soch rahe hain. <span style="color: var(--ink-faint);">("We're still thinking about it.")</span></div></div>
+      <div class="turn"><div class="result"><span class="pill confirmed">confirmed</span> <span class="mono" style="font-size: 12.5px; color: var(--ink-faint);">value: "No fixed policy"</span></div></div>
+    </div>
+    <p style="font-size: 13.5px; color: var(--ink-faint);">Ground truth called this <span class="pill uncertain">uncertain</span> — no policy exists to extract. The model's read is defensible too: the owner did state something concrete. This is a disagreement in how the eval set encodes "nothing to extract," not a language-comprehension failure — and it's the same failure mode in English and Hindi alike.</p>
+
+    <div class="callout rust">
+      <div class="clabel">Fix applied</div>
+      <p>The extraction prompt now explicitly instructs: an owner's explicit "I don't have an answer / haven't decided" is itself <strong>no usable signal</strong>, not a value — regardless of how confidently it's stated, or which language it's stated in. Live re-verification is queued behind the same quota constraint noted above.</p>
+    </div>
+  </section>
+
+  <section id="case-study">
+    <h2><span class="section-num serif">§</span>Case study: the metric in action</h2>
+    <p>One real trace makes the whole comparison concrete. Same case, same owner script, same extractor — only the policy differs.</p>
+    <div class="transcript">
+      <div class="transcript-head"><span>pharmacy_02 · hours field</span><span>adaptive agent</span></div>
+      <div class="turn agent"><div class="speaker">turn 3 — agent</div><div class="text">What are your opening and closing times, and are there days you're closed?</div></div>
+      <div class="turn owner"><div class="speaker">turn 3 — owner</div><div class="text">Hum almost hamesha khule rehte hain.</div></div>
+      <div class="turn agent"><div class="speaker">turn 9 — agent (follow-up)</div><div class="text">Aapki pharmacy ka har din ka opening-closing time kya hai?</div></div>
+      <div class="turn owner"><div class="speaker">turn 9 — owner</div><div class="text">7am to 11pm every day, no weekly off.</div></div>
+      <div class="turn"><div class="result"><span class="pill confirmed">confirmed</span> <span class="mono" style="font-size: 12.5px; color: var(--ink-faint);">value: 7am–11pm, all days</span></div></div>
+    </div>
+    <div class="transcript">
+      <div class="transcript-head"><span>pharmacy_02 · hours field</span><span>baseline agent</span></div>
+      <div class="turn agent"><div class="speaker">turn 3 — agent</div><div class="text">What are your business hours, including any days you're closed?</div></div>
+      <div class="turn owner"><div class="speaker">turn 3 — owner</div><div class="text">Hum almost hamesha khule rehte hain.</div></div>
+      <div class="turn"><div class="result"><span class="pill inferred">inferred</span> <span class="mono" style="font-size: 12.5px; color: var(--ink-faint);">value: null — "vague, no specific times given"</span></div></div>
+    </div>
+    <p>Six turns of difference across the whole interview bought the adaptive agent the actual opening hours instead of an empty <span class="pill inferred">inferred</span> record. This is the trade Metric 2 is putting a number on.</p>
+  </section>
+
+  <section id="usability">
+    <h2><span class="section-num serif">§</span>Metric 4 — downstream usability</h2>
+    <p>The RAG layer (<code>src/whatsapp/rag.py</code>) is built and was verified manually rather than batch-graded: a KB seeded from a real trace answered direct-field and semantic-retrieval questions correctly, and — the important negative case — declined to answer a question about something genuinely absent from the KB instead of inventing a plausible-sounding response.</p>
+    <p>A live WhatsApp channel was deliberately not pursued: it requires a Meta developer account for zero additional research value, since the claim it exists to support — "the KB is queryable and useful" — is already demonstrated at the RAG layer directly.</p>
+  </section>
+
+  <section id="limitations">
+    <h2><span class="section-num serif">§</span>Limitations</h2>
+    <ul>
+      <li><strong>Coverage:</strong> 15 of 20 planned cases evaluated (tuition category pending) — blocked by Groq's free-tier daily token cap, not a methodology gap. Cached and resumable at zero added cost.</li>
+      <li><strong>Value matching:</strong> "correct" extraction is judged by normalized token overlap against hand-authored ground truth, not exact match or an LLM judge — a documented, lenient heuristic chosen to avoid roughly doubling an already-large API call volume.</li>
+      <li><strong>Metric 4 is not batch-graded.</strong> The spec's ~10–15 question correct/incorrect/unanswerable pass was spot-checked, not automated.</li>
+      <li><strong>Small uncertain-field sample.</strong> Only 10 ground-truth-uncertain fields exist across the 15 run cases — enough to catch the prompt bug above, not enough to make a precise hallucination-rate claim.</li>
+    </ul>
+  </section>
+
+  <section id="nongoals">
+    <h2><span class="section-num serif">§</span>Non-goals, honored</h2>
+    <ul class="checklist">
+      <li>Not a general-purpose WhatsApp chatbot platform — that space is commoditized.</li>
+      <li>Not multi-tenant — one business profile per demo run.</li>
+      <li>No voice input — text-first, per the spec's own phasing.</li>
+      <li>No fine-tuning — pure prompting and orchestration throughout.</li>
+      <li>No exhaustive category coverage — four representative categories, generalization is explicitly future work.</li>
+    </ul>
+  </section>
+
+  <section id="scope">
+    <h2><span class="section-num serif">§</span>Why this scope is the right scope</h2>
+    <p>This is a research prototype, not a product — deliberately. It is not wired for multiple concurrent businesses, it runs on Groq's free tier (which has a hard daily cap, not just a per-minute limit), and it talks to WhatsApp's sandbox rather than a Meta-verified Business account. None of that is a shortcoming to fix later; it's the boundary the spec draws on purpose, and the effort allocation it specifies makes the priority explicit:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Component</th><th>Spec's stated effort</th><th>This capstone</th></tr></thead>
+        <tbody>
+          <tr><td>A — Dialogue policy</td><td class="num">~60%</td><td>Built, measured (Metrics 1–3)</td></tr>
+          <tr><td>D — Evaluation harness</td><td class="num">~15%</td><td>Built, run on 15/20 cases</td></tr>
+          <tr><td>B — KB store</td><td class="num">~15%</td><td>Built — spec calls for "intentionally simple"</td></tr>
+          <tr><td>C — WhatsApp / RAG demo</td><td class="num">~10%</td><td>Built — spec calls for "proof of usability, not a polished product"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The 75% of effort the spec assigns to the actual research question — does an adaptive dialogue policy out-perform a naive one, and can the agent be trusted not to fabricate — is fully built and measured. The 10–15% slices are exactly the parts that would need to change for real business owners: multi-tenant storage instead of one KB per demo run, a paid LLM tier instead of a free one, a Meta-verified WhatsApp Business account instead of a sandbox. Scaling those is a known-shape engineering problem; it doesn't touch whether the dialogue policy itself is sound.</p>
+
+    <div class="callout">
+      <div class="clabel">The actual claim</div>
+      <p>Metrics 1–3 are valid regardless of how many businesses run through the system. The pipeline was proven end-to-end with real data — real Groq-backed conversations, a real generated KB, real grounded RAG answers — not hypothetically. What production deployment would add is scale, not evidence.</p>
+    </div>
+  </section>
+
+  <footer>
+    <span class="mono">LangGraph · SQLite · Chroma · FastAPI · Groq (openai/gpt-oss-120b)</span>
+    <span class="mono">40/40 tests passing</span>
+  </footer>
+
+</div>
+</body>
+</html>

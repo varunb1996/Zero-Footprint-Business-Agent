@@ -13,6 +13,13 @@ against a naive fixed-form baseline (`graph_baseline.py`) using a
 (`src/kb/`, `src/whatsapp/`) exists to prove the generated knowledge base
 is actually queryable.
 
+**Full write-up:** [`docs/report.html`](docs/report.html) — methodology,
+real eval results, and the scope/production-readiness discussion. Open it
+locally in a browser, or view it rendered on
+[GitHub Pages](https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html)
+once Pages is enabled for this repo (Settings → Pages → deploy from
+`main` / `docs`).
+
 ## Setup
 
 ```bash

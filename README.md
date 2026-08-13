@@ -6,7 +6,7 @@ An agent that interviews a small business owner in natural conversation
 (English/Hindi/Hinglish) and converts it into a structured, queryable
 knowledge base — deciding per turn whether to **extract** a value,
 **clarify** an ambiguous answer, or **flag it uncertain** rather than
-guessing. See [`capstone_spec.md`](../capstone_spec.md) for the full
+guessing. See [`capstone_spec.md`](capstone_spec.md) for the full
 research spec this implements.
 
 The core contribution is the dialogue policy (`src/agent/`), evaluated

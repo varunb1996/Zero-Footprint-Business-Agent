@@ -1,6 +1,6 @@
 # Conversational Business Intake Agent
 
-**[📄 Read the full capstone report](https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html)** — methodology, real eval results, and the scope/production-readiness discussion. *(Link goes live once GitHub Pages is enabled for this repo — see below. Until then, open [`docs/report.html`](docs/report.html) directly.)*
+**[📄 Read the full capstone report](https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html)** — methodology, real eval results, and the scope/production-readiness discussion. *(Link goes live once GitHub Pages is enabled — see [Viewing the report](#viewing-the-report) below. Until then, open [`docs/report.html`](docs/report.html) directly.)*
 
 An agent that interviews a small business owner in natural conversation
 (English/Hindi/Hinglish) and converts it into a structured, queryable
@@ -89,6 +89,28 @@ uvicorn src.app:app --reload
 The webhook logic can be dry-run locally with `curl` against
 `GET/POST /webhook` without any Meta account — see `tests/test_webhook.py`
 for the exact payload shapes it expects.
+
+## Viewing the report
+
+`docs/report.html` is a self-contained static page (no build step) — GitHub
+Pages just needs to be pointed at it:
+
+1. Repo → **Settings** → **Pages**.
+2. Under "Build and deployment" → Source: **Deploy from a branch**.
+3. Branch: **main**, folder: **/docs** → **Save**.
+
+It builds in about a minute at:
+`https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html`
+
+For visibility beyond the README link at the top of this page, set it as
+the repo's **Website** link too — the most prominent spot on the repo
+homepage, next to the description:
+
+1. Repo homepage → **⚙️ gear icon** next to "About" (top-right sidebar).
+2. Paste the Pages URL above into **Website**.
+3. Save.
+
+Do this after Pages is live, so the link actually resolves when clicked.
 
 ## Project layout
 

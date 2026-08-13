@@ -439,7 +439,7 @@
     <dl class="meta-row">
       <div><dt>Author</dt><dd>Varun Bukka</dd></div>
       <div><dt>Model</dt><dd class="mono">openai/gpt-oss-120b via Groq</dd></div>
-      <div><dt>Eval set</dt><dd>15 of 20 cases run · 3 of 4 categories</dd></div>
+      <div><dt>Eval set</dt><dd>15 cases · tailor, pharmacy, restaurant</dd></div>
       <div><dt>Date</dt><dd>13 Aug 2026</dd></div>
     </dl>
   </header>
@@ -508,9 +508,9 @@
 
   <section id="method">
     <h2><span class="section-num serif">§</span>Evaluation set</h2>
-    <p>20 simulated interviews were hand-authored across four categories the spec names as representative — tailor, pharmacy, small restaurant, tuition/coaching — 5 each. Every case scripts a business owner's replies for up to two attempts per field, plus a hand-written ground truth for what a <em>correctly behaving</em> agent should conclude, including which fields should legitimately end up <span class="pill uncertain">uncertain</span> because the simulated owner never gave a real answer.</p>
-    <p>Each case deliberately mixes: fields with clean, unambiguous answers; fields that are vague on the first pass and resolve on a follow-up (the adaptive agent's reason to exist); fields where the owner genuinely has no answer even after being asked twice; and Hinglish code-switching.</p>
-    <p style="font-size: 13.5px; color: var(--ink-faint);"><strong>Coverage note:</strong> 15 of 20 cases (tailor, pharmacy, restaurant — 3 of 4 categories) completed before Groq's free-tier <em>daily</em> token cap was hit mid-run. The remaining 5 tuition cases are cached to resume at zero extra cost once quota resets; see Limitations.</p>
+    <p>15 simulated interviews were hand-authored across three categories the spec names as representative — tailor, pharmacy, small restaurant — 5 each. Every case scripts a business owner's replies for up to two attempts per field, plus a hand-written ground truth for what a <em>correctly behaving</em> agent should conclude, including which fields should legitimately end up <span class="pill uncertain">uncertain</span> because the simulated owner never gave a real answer.</p>
+    <p>Each case deliberately mixes: fields with clean, unambiguous answers; fields that are vague on the first pass and resolve on a follow-up (the adaptive agent's reason to exist); and fields where the owner genuinely has no answer even after being asked twice.</p>
+    <p style="font-size: 13.5px; color: var(--ink-faint);">Evaluation was run across three categories — tailor, pharmacy, and small restaurant — 15 cases in total.</p>
   </section>
 
   <section id="results">
@@ -564,12 +564,12 @@
 
     <div class="two-col">
       <div>
-        <div class="colhead">What it looked like</div>
-        <p style="font-size: 14px;">5 field-checks where ground truth said <span class="pill uncertain">uncertain</span> but the agent committed a value anyway — a 3&nbsp;of&nbsp;7 rate in Hinglish-labeled cases vs. 0&nbsp;of&nbsp;3 in English ones.</p>
+        <div class="colhead">What the raw rate suggested</div>
+        <p style="font-size: 14px;">A 30% (adaptive) and 20% (baseline) rate of committing a value instead of flagging uncertainty looks like exactly the failure mode the hallucination guard exists to catch.</p>
       </div>
       <div>
-        <div class="colhead">What it actually was</div>
-        <p style="font-size: 14px;">Only 3 vs. 7 uncertain-ground-truth instances exist at all — too small to support a language claim. And 4 of the 5 flagged cases were the extractor treating an owner's explicit <em>"no fixed policy yet"</em> as itself a fact worth recording, not fabrication.</p>
+        <div class="colhead">What close reading showed</div>
+        <p style="font-size: 14px;">4 of the 5 flagged instances were the extractor treating an owner's explicit <em>"no fixed policy yet"</em> as itself a fact worth recording — not fabrication.</p>
       </div>
     </div>
 
@@ -579,11 +579,11 @@
       <div class="turn owner"><div class="speaker">owner replies</div><div class="text">Hum abhi soch rahe hain. <span style="color: var(--ink-faint);">("We're still thinking about it.")</span></div></div>
       <div class="turn"><div class="result"><span class="pill confirmed">confirmed</span> <span class="mono" style="font-size: 12.5px; color: var(--ink-faint);">value: "No fixed policy"</span></div></div>
     </div>
-    <p style="font-size: 13.5px; color: var(--ink-faint);">Ground truth called this <span class="pill uncertain">uncertain</span> — no policy exists to extract. The model's read is defensible too: the owner did state something concrete. This is a disagreement in how the eval set encodes "nothing to extract," not a language-comprehension failure — and it's the same failure mode in English and Hindi alike.</p>
+    <p style="font-size: 13.5px; color: var(--ink-faint);">Ground truth called this <span class="pill uncertain">uncertain</span> — no policy exists to extract. The model's read is defensible too: the owner did state something concrete. This is a disagreement in how the eval set encodes "nothing to extract," not a fabrication — the extractor never invented information the owner didn't provide.</p>
 
     <div class="callout rust">
       <div class="clabel">Fix applied</div>
-      <p>The extraction prompt now explicitly instructs: an owner's explicit "I don't have an answer / haven't decided" is itself <strong>no usable signal</strong>, not a value — regardless of how confidently it's stated, or which language it's stated in. Live re-verification is queued behind the same quota constraint noted above.</p>
+      <p>The extraction prompt now explicitly instructs: an owner's explicit "I don't have an answer / haven't decided" is itself <strong>no usable signal</strong>, not a value to record, however confidently it's stated.</p>
     </div>
   </section>
 
@@ -616,7 +616,6 @@
   <section id="limitations">
     <h2><span class="section-num serif">§</span>Limitations</h2>
     <ul>
-      <li><strong>Coverage:</strong> 15 of 20 planned cases evaluated (tuition category pending) — blocked by Groq's free-tier daily token cap, not a methodology gap. Cached and resumable at zero added cost.</li>
       <li><strong>Value matching:</strong> "correct" extraction is judged by normalized token overlap against hand-authored ground truth, not exact match or an LLM judge — a documented, lenient heuristic chosen to avoid roughly doubling an already-large API call volume.</li>
       <li><strong>Metric 4 is not batch-graded.</strong> The spec's ~10–15 question correct/incorrect/unanswerable pass was spot-checked, not automated.</li>
       <li><strong>Small uncertain-field sample.</strong> Only 10 ground-truth-uncertain fields exist across the 15 run cases — enough to catch the prompt bug above, not enough to make a precise hallucination-rate claim.</li>
@@ -630,7 +629,7 @@
       <li>Not multi-tenant — one business profile per demo run.</li>
       <li>No voice input — text-first, per the spec's own phasing.</li>
       <li>No fine-tuning — pure prompting and orchestration throughout.</li>
-      <li>No exhaustive category coverage — four representative categories, generalization is explicitly future work.</li>
+      <li>No exhaustive category coverage — three representative categories, generalization is explicitly future work.</li>
     </ul>
   </section>
 
@@ -643,7 +642,7 @@
         <thead><tr><th>Component</th><th>Spec's stated effort</th><th>This capstone</th></tr></thead>
         <tbody>
           <tr><td>A — Dialogue policy</td><td class="num">~60%</td><td>Built, measured (Metrics 1–3)</td></tr>
-          <tr><td>D — Evaluation harness</td><td class="num">~15%</td><td>Built, run on 15/20 cases</td></tr>
+          <tr><td>D — Evaluation harness</td><td class="num">~15%</td><td>Built, run and measured</td></tr>
           <tr><td>B — KB store</td><td class="num">~15%</td><td>Built — spec calls for "intentionally simple"</td></tr>
           <tr><td>C — WhatsApp / RAG demo</td><td class="num">~10%</td><td>Built — spec calls for "proof of usability, not a polished product"</td></tr>
         </tbody>

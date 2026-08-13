@@ -1,0 +1,29 @@
+{
+  "id": "tuition_02",
+  "category": "tuition",
+  "language_style": "english",
+  "description": "Hours (batch timings) and fees are vague-then-resolved.",
+  "owner_script": {
+    "name": ["Excel Coaching Institute.", "Excel Coaching Institute."],
+    "category": ["Coaching institute for competitive exams.", "Coaching institute for competitive exams."],
+    "hours": ["We have different batches at different times.", "Morning batch 6 to 8am, evening batch 5 to 7pm, six days a week, Sunday off."],
+    "location": ["2nd Floor, Central Plaza.", "2nd Floor, Central Plaza."],
+    "contact": ["9789012345", "9789012345"],
+    "products_or_services": ["JEE and NEET coaching, physics chemistry and math covered.", "JEE and NEET coaching, physics chemistry and math covered."],
+    "policies": ["Fees depend on the course.", "One-year course is 45000, paid in 3 installments, no refund after first installment."],
+    "free_text_notes": ["We have a library facility for students.", "We have a library facility for students."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Excel Coaching Institute"},
+    "category": {"status": "confirmed", "value": "tuition"},
+    "hours": {"status": "confirmed", "value": {"morning_batch": "06:00-08:00", "evening_batch": "17:00-19:00", "days": "Mon-Sat", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "2nd Floor, Central Plaza"},
+    "contact": {"status": "confirmed", "value": "9789012345"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "JEE coaching (physics, chemistry, math)", "price": null, "notes": null},
+      {"name": "NEET coaching (physics, chemistry, math)", "price": null, "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"fee": "45000 for one-year course, 3 installments", "refund": "no refund after first installment"}},
+    "free_text_notes": {"status": "confirmed", "value": "Has a library facility for students"}
+  }
+}

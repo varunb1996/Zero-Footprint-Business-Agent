@@ -1,0 +1,29 @@
+{
+  "id": "pharmacy_05",
+  "category": "pharmacy",
+  "language_style": "hinglish",
+  "description": "Policies and free_text_notes never resolve — owner hasn't decided on policies yet and has nothing more to add.",
+  "owner_script": {
+    "name": ["Good Health Medicos.", "Good Health Medicos."],
+    "category": ["Pharmacy.", "Pharmacy."],
+    "hours": ["8 to 8, seven days a week.", "8 to 8, seven days a week."],
+    "location": ["Near Community Center, Sector 9.", "Near Community Center, Sector 9."],
+    "contact": ["9654321098", "9654321098"],
+    "products_or_services": ["General medicines and healthcare products, prices as marked.", "General medicines and healthcare products, prices as marked."],
+    "policies": ["Hum abhi soch rahe hain.", "Koi fix policy nahi hai abhi."],
+    "free_text_notes": ["Bas itna hi.", "Kuch aur yaad nahi."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Good Health Medicos"},
+    "category": {"status": "confirmed", "value": "pharmacy"},
+    "hours": {"status": "confirmed", "value": {"all_days": "08:00-20:00"}},
+    "location": {"status": "confirmed", "value": "Near Community Center, Sector 9"},
+    "contact": {"status": "confirmed", "value": "9654321098"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "general medicines", "price": "as marked", "notes": null},
+      {"name": "healthcare products", "price": "as marked", "notes": null}
+    ]},
+    "policies": {"status": "uncertain", "value": null},
+    "free_text_notes": {"status": "uncertain", "value": null}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "tuition_04",
+  "category": "tuition",
+  "language_style": "hinglish",
+  "description": "Category (tuition vs coaching institute) is vague-then-resolved.",
+  "owner_script": {
+    "name": ["Success Point.", "Success Point."],
+    "category": ["Hum padhai karwate hain bas.", "We're more like a coaching institute, we prepare students for board exams and entrance tests, not just regular tuition."],
+    "hours": ["5pm to 9pm, all days except Sunday.", "5pm to 9pm, all days except Sunday."],
+    "location": ["Near Government School, Nehru Colony.", "Near Government School, Nehru Colony."],
+    "contact": ["9890123456", "9890123456"],
+    "products_or_services": ["Board exam preparation for classes 9 to 12, fee 2000 per month.", "Board exam preparation for classes 9 to 12, fee 2000 per month."],
+    "policies": ["No refund policy, fee due within first week of month.", "No refund policy, fee due within first week of month."],
+    "free_text_notes": ["We conduct monthly test series for all students.", "We conduct monthly test series for all students."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Success Point"},
+    "category": {"status": "confirmed", "value": "coaching institute"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "17:00-21:00", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Near Government School, Nehru Colony"},
+    "contact": {"status": "confirmed", "value": "9890123456"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "board exam preparation (classes 9-12)", "price": "2000/month", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"refund": "no refund", "fee_due": "first week of month"}},
+    "free_text_notes": {"status": "confirmed", "value": "Monthly test series for all students"}
+  }
+}

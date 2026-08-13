@@ -1,0 +1,30 @@
+{
+  "id": "tailor_02",
+  "category": "tailor",
+  "language_style": "english",
+  "description": "Hours and policies are vague-then-resolved; contact never resolves (owner refuses to give a number).",
+  "owner_script": {
+    "name": ["We're Style Point Tailors.", "We're Style Point Tailors."],
+    "category": ["We do ladies and gents tailoring, boutique work also.", "We do ladies and gents tailoring, boutique work also."],
+    "hours": ["We open early and close late.", "9am to 9pm, all days including Sunday."],
+    "location": ["Near City Hospital, Model Town.", "Near City Hospital, Model Town."],
+    "contact": ["You can just come to the shop.", "We don't really give out a number, better to visit."],
+    "products_or_services": ["Blouse stitching 300, saree fall 100, alterations 150 onwards.", "Blouse stitching 300, saree fall 100, alterations 150 onwards."],
+    "policies": ["Depends on the order.", "For bulk orders we need 30% advance, no advance for regular stitching."],
+    "free_text_notes": ["We also do embroidery work on request.", "We also do embroidery work on request."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Style Point Tailors"},
+    "category": {"status": "confirmed", "value": "tailor"},
+    "hours": {"status": "confirmed", "value": {"all_days": "09:00-21:00"}},
+    "location": {"status": "confirmed", "value": "Near City Hospital, Model Town"},
+    "contact": {"status": "uncertain", "value": null},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "blouse stitching", "price": "300", "notes": null},
+      {"name": "saree fall", "price": "100", "notes": null},
+      {"name": "alterations", "price": "150 onwards", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"advance_payment": "30% advance for bulk orders, none for regular stitching"}},
+    "free_text_notes": {"status": "confirmed", "value": "Also does embroidery work on request"}
+  }
+}

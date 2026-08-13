@@ -1,0 +1,28 @@
+{
+  "id": "tuition_05",
+  "category": "tuition",
+  "language_style": "hinglish",
+  "description": "Policies and free_text_notes never resolve — owner hasn't decided on policies and has nothing more to add.",
+  "owner_script": {
+    "name": ["Knowledge Tree Academy.", "Knowledge Tree Academy."],
+    "category": ["Tuition center for primary and secondary students.", "Tuition center for primary and secondary students."],
+    "hours": ["3pm to 6pm, closed Sundays.", "3pm to 6pm, closed Sundays."],
+    "location": ["Opposite Public Library, Model Colony.", "Opposite Public Library, Model Colony."],
+    "contact": ["9901234567", "9901234567"],
+    "products_or_services": ["All subjects for classes 1 to 8, fee 800 per month.", "All subjects for classes 1 to 8, fee 800 per month."],
+    "policies": ["Hum abhi tak decide nahi kiye.", "No fixed policy yet, we're still figuring it out."],
+    "free_text_notes": ["Kuch nahi.", "Nothing else really."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Knowledge Tree Academy"},
+    "category": {"status": "confirmed", "value": "tuition"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "15:00-18:00", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Opposite Public Library, Model Colony"},
+    "contact": {"status": "confirmed", "value": "9901234567"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "all subjects (classes 1-8)", "price": "800/month", "notes": null}
+    ]},
+    "policies": {"status": "uncertain", "value": null},
+    "free_text_notes": {"status": "uncertain", "value": null}
+  }
+}

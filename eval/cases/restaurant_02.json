@@ -1,0 +1,29 @@
+{
+  "id": "restaurant_02",
+  "category": "restaurant",
+  "language_style": "hinglish",
+  "description": "Hours (seasonal) and delivery policy are vague-then-resolved.",
+  "owner_script": {
+    "name": ["Green Leaf Restaurant.", "Green Leaf Restaurant."],
+    "category": ["Pure vegetarian restaurant.", "Pure vegetarian restaurant."],
+    "hours": ["Timing season ke hisaab se change hoti hai.", "Summer mein 11 se 10:30, winter mein 11 se 10, Tuesday band."],
+    "location": ["Near City Park, Sector 7.", "Near City Park, Sector 7."],
+    "contact": ["9234567890", "9234567890"],
+    "products_or_services": ["Thali 120, south Indian items bhi milte hain, dosa 40 rupaye se shuru.", "Thali 120, south Indian items bhi milte hain, dosa 40 rupaye se shuru."],
+    "policies": ["Delivery ke baare mein baad mein batate hain.", "Delivery available through Zomato and Swiggy only, no direct delivery."],
+    "free_text_notes": ["Hum small events ke liye catering bhi karte hain.", "Hum small events ke liye catering bhi karte hain."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Green Leaf Restaurant"},
+    "category": {"status": "confirmed", "value": "restaurant"},
+    "hours": {"status": "confirmed", "value": {"summer": "11:00-22:30", "winter": "11:00-22:00", "closed": "Tuesday"}},
+    "location": {"status": "confirmed", "value": "Near City Park, Sector 7"},
+    "contact": {"status": "confirmed", "value": "9234567890"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "thali", "price": "120", "notes": null},
+      {"name": "south Indian items", "price": "starts at 40 (dosa)", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"delivery": "via Zomato and Swiggy only, no direct delivery"}},
+    "free_text_notes": {"status": "confirmed", "value": "Caters for small events"}
+  }
+}

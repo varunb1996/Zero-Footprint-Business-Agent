@@ -1,0 +1,29 @@
+{
+  "id": "tailor_03",
+  "category": "tailor",
+  "language_style": "hinglish",
+  "description": "Hinglish code-switching throughout; location never resolves to a usable address.",
+  "owner_script": {
+    "name": ["Naam hai New Delhi Tailors.", "Naam hai New Delhi Tailors."],
+    "category": ["Hum tailoring karte hain, stitching aur alteration dono.", "Hum tailoring karte hain, stitching aur alteration dono."],
+    "hours": ["Subah 10 baje se raat 8 baje tak, Sunday band rehta hai.", "Subah 10 baje se raat 8 baje tak, Sunday band rehta hai."],
+    "location": ["Market mein hain bas.", "Bas market ke andar hi hain, pooch lena kisi se."],
+    "contact": ["9988776655", "9988776655"],
+    "products_or_services": ["Suit stitching 800 rupaye se shuru, alteration ka rate kaam dekh ke batate hain.", "Suit stitching 800 rupaye se shuru, alteration ka rate kaam dekh ke batate hain."],
+    "policies": ["Custom order mein return nahi hota, advance lena padta hai bade order pe.", "Custom order mein return nahi hota, advance lena padta hai bade order pe."],
+    "free_text_notes": ["Hum yahan 15 saal se hain.", "Hum yahan 15 saal se hain."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "New Delhi Tailors"},
+    "category": {"status": "confirmed", "value": "tailor"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "10:00-20:00", "sun": "closed"}},
+    "location": {"status": "uncertain", "value": null},
+    "contact": {"status": "confirmed", "value": "9988776655"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "suit stitching", "price": "starts at 800", "notes": null},
+      {"name": "alterations", "price": "varies", "notes": "rate depends on the work"}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no returns on custom orders", "advance_payment": "required for big orders"}},
+    "free_text_notes": {"status": "confirmed", "value": "In business 15 years"}
+  }
+}

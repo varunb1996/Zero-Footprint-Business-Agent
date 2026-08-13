@@ -1,0 +1,29 @@
+{
+  "id": "tuition_01",
+  "category": "tuition",
+  "language_style": "english",
+  "description": "All fields clean and unambiguous.",
+  "owner_script": {
+    "name": ["Bright Minds Tuition Center.", "Bright Minds Tuition Center."],
+    "category": ["We run a tuition center for school students.", "We run a tuition center for school students."],
+    "hours": ["4pm to 8pm on weekdays, closed Sundays.", "4pm to 8pm on weekdays, closed Sundays."],
+    "location": ["Above City Bank, Sector 11.", "Above City Bank, Sector 11."],
+    "contact": ["9678901234", "9678901234"],
+    "products_or_services": ["Math and science tuition for classes 6 to 10, fees are 1500 per month per subject.", "Math and science tuition for classes 6 to 10, fees are 1500 per month per subject."],
+    "policies": ["Fees to be paid by 5th of every month, no refund once batch starts.", "Fees to be paid by 5th of every month, no refund once batch starts."],
+    "free_text_notes": ["We also provide free doubt-clearing sessions on weekends.", "We also provide free doubt-clearing sessions on weekends."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Bright Minds Tuition Center"},
+    "category": {"status": "confirmed", "value": "tuition"},
+    "hours": {"status": "confirmed", "value": {"mon_fri": "16:00-20:00", "sat": "unspecified", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Above City Bank, Sector 11"},
+    "contact": {"status": "confirmed", "value": "9678901234"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "math tuition (classes 6-10)", "price": "1500/month/subject", "notes": null},
+      {"name": "science tuition (classes 6-10)", "price": "1500/month/subject", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"fee_due": "5th of every month", "refund": "no refund once batch starts"}},
+    "free_text_notes": {"status": "confirmed", "value": "Free doubt-clearing sessions on weekends"}
+  }
+}

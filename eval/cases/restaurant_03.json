@@ -1,0 +1,30 @@
+{
+  "id": "restaurant_03",
+  "category": "restaurant",
+  "language_style": "hinglish",
+  "description": "Hinglish throughout; contact never resolves — owner insists no phone is needed.",
+  "owner_script": {
+    "name": ["Punjabi Rasoi.", "Punjabi Rasoi."],
+    "category": ["Dhaba style restaurant hai, Punjabi khana milta hai.", "Dhaba style restaurant hai, Punjabi khana milta hai."],
+    "hours": ["Subah 10 se raat 11 baje tak.", "Subah 10 se raat 11 baje tak."],
+    "location": ["Highway ke paas, GT Road.", "Highway ke paas, GT Road."],
+    "contact": ["Number nahi hai, bas aa jao.", "Humein phone rakhne ki zarurat nahi padi abhi tak."],
+    "products_or_services": ["Thali 100 rupaye, lassi 40, roti alag se.", "Thali 100 rupaye, lassi 40, roti alag se."],
+    "policies": ["Advance nahi lete, bas dine-in hai abhi.", "Advance nahi lete, bas dine-in hai abhi."],
+    "free_text_notes": ["Truck drivers ke liye parking bhi hai.", "Truck drivers ke liye parking bhi hai."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Punjabi Rasoi"},
+    "category": {"status": "confirmed", "value": "restaurant"},
+    "hours": {"status": "confirmed", "value": {"all_days": "10:00-23:00"}},
+    "location": {"status": "confirmed", "value": "Near the highway, GT Road"},
+    "contact": {"status": "uncertain", "value": null},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "thali", "price": "100", "notes": null},
+      {"name": "lassi", "price": "40", "notes": null},
+      {"name": "roti", "price": null, "notes": "charged separately"}
+    ]},
+    "policies": {"status": "confirmed", "value": {"payment": "no advance, dine-in only"}},
+    "free_text_notes": {"status": "confirmed", "value": "Has parking for truck drivers"}
+  }
+}

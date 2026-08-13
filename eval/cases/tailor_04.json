@@ -1,0 +1,30 @@
+{
+  "id": "tailor_04",
+  "category": "tailor",
+  "language_style": "hinglish",
+  "description": "Category is vague on first pass (clothes-related but unclear if tailoring vs retail) and resolves on follow-up.",
+  "owner_script": {
+    "name": ["We're Fashion Hub.", "We're Fashion Hub."],
+    "category": ["Hum clothes ka kaam karte hain.", "Hum custom stitching karte hain, ready-made nahi bechte, sirf tailoring services."],
+    "hours": ["10 to 7, closed on Mondays.", "10 to 7, closed on Mondays."],
+    "location": ["MG Road, opposite the temple.", "MG Road, opposite the temple."],
+    "contact": ["9123456780", "9123456780"],
+    "products_or_services": ["Shirt stitching 400, trouser stitching 350, alterations 100 onwards.", "Shirt stitching 400, trouser stitching 350, alterations 100 onwards."],
+    "policies": ["No cash refunds, only exchange, advance payment required for orders above 2000.", "No cash refunds, only exchange, advance payment required for orders above 2000."],
+    "free_text_notes": ["Nothing else to add.", "Nothing else to add."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Fashion Hub"},
+    "category": {"status": "confirmed", "value": "tailor"},
+    "hours": {"status": "confirmed", "value": {"tue_sun": "10:00-19:00", "mon": "closed"}},
+    "location": {"status": "confirmed", "value": "MG Road, opposite the temple"},
+    "contact": {"status": "confirmed", "value": "9123456780"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "shirt stitching", "price": "400", "notes": null},
+      {"name": "trouser stitching", "price": "350", "notes": null},
+      {"name": "alterations", "price": "100 onwards", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no cash refunds, exchange only", "advance_payment": "required for orders above 2000"}},
+    "free_text_notes": {"status": "confirmed", "value": "No additional notes"}
+  }
+}

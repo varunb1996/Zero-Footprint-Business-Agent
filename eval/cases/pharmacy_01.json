@@ -1,0 +1,30 @@
+{
+  "id": "pharmacy_01",
+  "category": "pharmacy",
+  "language_style": "english",
+  "description": "All fields clean and unambiguous.",
+  "owner_script": {
+    "name": ["We're Sharma Medical Store.", "We're Sharma Medical Store."],
+    "category": ["We're a pharmacy, we sell medicines.", "We're a pharmacy, we sell medicines."],
+    "hours": ["8am to 10pm, open all days including Sunday.", "8am to 10pm, open all days including Sunday."],
+    "location": ["Shop 3, Main Market, opposite the bus stop.", "Shop 3, Main Market, opposite the bus stop."],
+    "contact": ["9812345670", "9812345670"],
+    "products_or_services": ["We stock all general medicines, also baby products and first aid items, prices are as per MRP.", "We stock all general medicines, also baby products and first aid items, prices are as per MRP."],
+    "policies": ["No returns on medicines once sold, home delivery available for orders above 500.", "No returns on medicines once sold, home delivery available for orders above 500."],
+    "free_text_notes": ["We also have a qualified pharmacist on duty at all times.", "We also have a qualified pharmacist on duty at all times."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Sharma Medical Store"},
+    "category": {"status": "confirmed", "value": "pharmacy"},
+    "hours": {"status": "confirmed", "value": {"all_days": "08:00-22:00"}},
+    "location": {"status": "confirmed", "value": "Shop 3, Main Market, opposite the bus stop"},
+    "contact": {"status": "confirmed", "value": "9812345670"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "general medicines", "price": "as per MRP", "notes": null},
+      {"name": "baby products", "price": "as per MRP", "notes": null},
+      {"name": "first aid items", "price": "as per MRP", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no returns on medicines once sold", "delivery": "home delivery for orders above 500"}},
+    "free_text_notes": {"status": "confirmed", "value": "Qualified pharmacist on duty at all times"}
+  }
+}

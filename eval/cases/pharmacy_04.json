@@ -1,0 +1,32 @@
+{
+  "id": "pharmacy_04",
+  "category": "pharmacy",
+  "language_style": "english",
+  "description": "Products list is long and messy in one breath; hours has an irregular closed-day pattern.",
+  "owner_script": {
+    "name": ["Wellness Pharmacy.", "Wellness Pharmacy."],
+    "category": ["Pharmacy.", "Pharmacy."],
+    "hours": ["9 to 9, closed on second and fourth Sunday.", "9 to 9, closed on second and fourth Sunday."],
+    "location": ["Plot 22, Health Complex.", "Plot 22, Health Complex."],
+    "contact": ["9765432109", "9765432109"],
+    "products_or_services": ["We have medicines, and also diabetic care items, surgical items, baby food, and skincare products, prices vary by brand.", "We have medicines, and also diabetic care items, surgical items, baby food, and skincare products, prices vary by brand."],
+    "policies": ["No return once the seal is opened, returns accepted for unopened items within 3 days.", "No return once the seal is opened, returns accepted for unopened items within 3 days."],
+    "free_text_notes": ["We accept insurance claims for select providers.", "We accept insurance claims for select providers."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Wellness Pharmacy"},
+    "category": {"status": "confirmed", "value": "pharmacy"},
+    "hours": {"status": "confirmed", "value": {"all_days": "09:00-21:00", "closed": "2nd and 4th Sunday"}},
+    "location": {"status": "confirmed", "value": "Plot 22, Health Complex"},
+    "contact": {"status": "confirmed", "value": "9765432109"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "medicines", "price": "varies by brand", "notes": null},
+      {"name": "diabetic care items", "price": "varies by brand", "notes": null},
+      {"name": "surgical items", "price": "varies by brand", "notes": null},
+      {"name": "baby food", "price": "varies by brand", "notes": null},
+      {"name": "skincare products", "price": "varies by brand", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no return once seal opened; unopened items within 3 days accepted"}},
+    "free_text_notes": {"status": "confirmed", "value": "Accepts insurance claims for select providers"}
+  }
+}

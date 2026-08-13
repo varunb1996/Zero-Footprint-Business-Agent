@@ -1,0 +1,30 @@
+{
+  "id": "restaurant_05",
+  "category": "restaurant",
+  "language_style": "english",
+  "description": "Location and policies never resolve — owner has no formal address and no fixed policy.",
+  "owner_script": {
+    "name": ["Tasty Corner.", "Tasty Corner."],
+    "category": ["Small restaurant, fast food and snacks.", "Small restaurant, fast food and snacks."],
+    "hours": ["12pm to 10pm, closed Mondays.", "12pm to 10pm, closed Mondays."],
+    "location": ["You'll find it easily, everyone knows us.", "Just ask anyone in the area, we don't have a formal address."],
+    "contact": ["9567890123", "9567890123"],
+    "products_or_services": ["Burgers 80, sandwiches 60, cold drinks 30.", "Burgers 80, sandwiches 60, cold drinks 30."],
+    "policies": ["We haven't really thought about policies.", "No fixed rules, we handle it case by case."],
+    "free_text_notes": ["Student crowd mostly, near the college.", "Student crowd mostly, near the college."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Tasty Corner"},
+    "category": {"status": "confirmed", "value": "restaurant"},
+    "hours": {"status": "confirmed", "value": {"tue_sun": "12:00-22:00", "mon": "closed"}},
+    "location": {"status": "uncertain", "value": null},
+    "contact": {"status": "confirmed", "value": "9567890123"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "burgers", "price": "80", "notes": null},
+      {"name": "sandwiches", "price": "60", "notes": null},
+      {"name": "cold drinks", "price": "30", "notes": null}
+    ]},
+    "policies": {"status": "uncertain", "value": null},
+    "free_text_notes": {"status": "confirmed", "value": "Mostly a student crowd, near the college"}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "restaurant_04",
+  "category": "restaurant",
+  "language_style": "hinglish",
+  "description": "Category (dhaba vs restaurant) is vague-then-resolved; products described messily in one breath with vague pricing.",
+  "owner_script": {
+    "name": ["Highway King.", "Highway King."],
+    "category": ["Hum khaana banate hain bas.", "We're more of a dhaba, roadside restaurant, mainly for truckers and travelers."],
+    "hours": ["24 hours open.", "24 hours open."],
+    "location": ["NH 44, near the toll plaza.", "NH 44, near the toll plaza."],
+    "contact": ["9456789012", "9456789012"],
+    "products_or_services": ["We have thali, parathas, tea, basically everything a dhaba has, prices are cheap, ask when you come.", "We have thali, parathas, tea, basically everything a dhaba has, prices are cheap, ask when you come."],
+    "policies": ["No advance payment, cash only.", "No advance payment, cash only."],
+    "free_text_notes": ["Open 24x7 including festivals.", "Open 24x7 including festivals."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Highway King"},
+    "category": {"status": "confirmed", "value": "restaurant (dhaba-style)"},
+    "hours": {"status": "confirmed", "value": {"all_days": "24 hours"}},
+    "location": {"status": "confirmed", "value": "NH 44, near the toll plaza"},
+    "contact": {"status": "confirmed", "value": "9456789012"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "thali", "price": "ask when you come", "notes": null},
+      {"name": "parathas", "price": "ask when you come", "notes": null},
+      {"name": "tea", "price": "ask when you come", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"payment": "no advance, cash only"}},
+    "free_text_notes": {"status": "confirmed", "value": "Open 24x7 including festivals"}
+  }
+}

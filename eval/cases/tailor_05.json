@@ -1,0 +1,28 @@
+{
+  "id": "tailor_05",
+  "category": "tailor",
+  "language_style": "hinglish",
+  "description": "Policies and free_text_notes never resolve — owner genuinely has no fixed policy and nothing to add.",
+  "owner_script": {
+    "name": ["We're Perfect Fit Tailors.", "We're Perfect Fit Tailors."],
+    "category": ["Tailoring shop, stitching and alterations.", "Tailoring shop, stitching and alterations."],
+    "hours": ["9 to 6, closed Sundays.", "9 to 6, closed Sundays."],
+    "location": ["Behind the post office, Civil Lines.", "Behind the post office, Civil Lines."],
+    "contact": ["9871234567", "9871234567"],
+    "products_or_services": ["Stitching charges vary by garment, ask in store for exact rates.", "Stitching charges vary by garment, ask in store for exact rates."],
+    "policies": ["Humein nahi pata abhi.", "Hum baad mein decide karenge, koi fixed policy nahi hai."],
+    "free_text_notes": ["Nothing much.", "Can't think of anything."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Perfect Fit Tailors"},
+    "category": {"status": "confirmed", "value": "tailor"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "09:00-18:00", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Behind the post office, Civil Lines"},
+    "contact": {"status": "confirmed", "value": "9871234567"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "stitching", "price": "varies", "notes": "ask in store for exact rates"}
+    ]},
+    "policies": {"status": "uncertain", "value": null},
+    "free_text_notes": {"status": "uncertain", "value": null}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "pharmacy_02",
+  "category": "pharmacy",
+  "language_style": "hinglish",
+  "description": "Hours vague-then-resolved; contact never resolves (owner keeps deflecting).",
+  "owner_script": {
+    "name": ["City Care Pharmacy.", "City Care Pharmacy."],
+    "category": ["Pharmacy, medical store.", "Pharmacy, medical store."],
+    "hours": ["Hum almost hamesha khule rehte hain.", "7am to 11pm every day, no weekly off."],
+    "location": ["Near Railway Station, Platform Road.", "Near Railway Station, Platform Road."],
+    "contact": ["Landline hai bas, number yaad nahi.", "Abhi available nahi hai, baad mein bata denge."],
+    "products_or_services": ["All types of medicines, also cosmetics and health supplements.", "All types of medicines, also cosmetics and health supplements."],
+    "policies": ["No returns, exchange only for wrong items within same day.", "No returns, exchange only for wrong items within same day."],
+    "free_text_notes": ["We do free blood pressure checkup.", "We do free blood pressure checkup."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "City Care Pharmacy"},
+    "category": {"status": "confirmed", "value": "pharmacy"},
+    "hours": {"status": "confirmed", "value": {"all_days": "07:00-23:00"}},
+    "location": {"status": "confirmed", "value": "Near Railway Station, Platform Road"},
+    "contact": {"status": "uncertain", "value": null},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "medicines", "price": null, "notes": null},
+      {"name": "cosmetics", "price": null, "notes": null},
+      {"name": "health supplements", "price": null, "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no returns, exchange only for wrong items same day"}},
+    "free_text_notes": {"status": "confirmed", "value": "Free blood pressure checkup available"}
+  }
+}

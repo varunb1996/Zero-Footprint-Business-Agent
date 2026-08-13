@@ -1,0 +1,28 @@
+{
+  "id": "tuition_03",
+  "category": "tuition",
+  "language_style": "hinglish",
+  "description": "Hinglish throughout; contact never resolves — owner insists you must visit in person.",
+  "owner_script": {
+    "name": ["Gyan Vidya Classes.", "Gyan Vidya Classes."],
+    "category": ["Hum tuition classes chalate hain, school ke bachon ke liye.", "Hum tuition classes chalate hain, school ke bachon ke liye."],
+    "hours": ["Shaam 4 baje se 7 baje tak, Sunday chutti.", "Shaam 4 baje se 7 baje tak, Sunday chutti."],
+    "location": ["Ram Mandir ke paas, Vikas Nagar.", "Ram Mandir ke paas, Vikas Nagar."],
+    "contact": ["Number abhi nahi hai mere paas.", "Office aa ke hi baat karna padega, phone available nahi hai."],
+    "products_or_services": ["Hindi english math sab subjects padhate hain, fee 1000 rupaye month.", "Hindi english math sab subjects padhate hain, fee 1000 rupaye month."],
+    "policies": ["Monthly fee advance mein deni hoti hai, refund nahi hota.", "Monthly fee advance mein deni hoti hai, refund nahi hota."],
+    "free_text_notes": ["Hum chote batches mein padhate hain, max 15 students.", "Hum chote batches mein padhate hain, max 15 students."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Gyan Vidya Classes"},
+    "category": {"status": "confirmed", "value": "tuition"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "16:00-19:00", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Near Ram Mandir, Vikas Nagar"},
+    "contact": {"status": "uncertain", "value": null},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "Hindi, English, Math tuition", "price": "1000/month", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"fee": "paid in advance monthly", "refund": "no refund"}},
+    "free_text_notes": {"status": "confirmed", "value": "Small batches, max 15 students"}
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "restaurant_01",
+  "category": "restaurant",
+  "language_style": "english",
+  "description": "All fields clean and unambiguous.",
+  "owner_script": {
+    "name": ["Spice Junction.", "Spice Junction."],
+    "category": ["We're a small restaurant, north Indian food.", "We're a small restaurant, north Indian food."],
+    "hours": ["11am to 11pm, open all days.", "11am to 11pm, open all days."],
+    "location": ["Food Street, near the cinema hall.", "Food Street, near the cinema hall."],
+    "contact": ["9345678901", "9345678901"],
+    "products_or_services": ["Thali is 150 rupees, butter chicken 250, dal makhani 180, we also do home delivery.", "Thali is 150 rupees, butter chicken 250, dal makhani 180, we also do home delivery."],
+    "policies": ["No advance payment needed for dine-in, delivery orders need payment on order.", "No advance payment needed for dine-in, delivery orders need payment on order."],
+    "free_text_notes": ["We have both AC and non-AC seating.", "We have both AC and non-AC seating."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Spice Junction"},
+    "category": {"status": "confirmed", "value": "restaurant"},
+    "hours": {"status": "confirmed", "value": {"all_days": "11:00-23:00"}},
+    "location": {"status": "confirmed", "value": "Food Street, near the cinema hall"},
+    "contact": {"status": "confirmed", "value": "9345678901"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "thali", "price": "150", "notes": null},
+      {"name": "butter chicken", "price": "250", "notes": null},
+      {"name": "dal makhani", "price": "180", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"payment": "no advance for dine-in; delivery paid on order"}},
+    "free_text_notes": {"status": "confirmed", "value": "Has both AC and non-AC seating"}
+  }
+}

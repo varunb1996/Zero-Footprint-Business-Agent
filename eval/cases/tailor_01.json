@@ -1,0 +1,29 @@
+{
+  "id": "tailor_01",
+  "category": "tailor",
+  "language_style": "english",
+  "description": "Mostly clean answers; hours is vague on first pass and resolves on follow-up.",
+  "owner_script": {
+    "name": ["We're called Rajesh Tailors.", "We're called Rajesh Tailors."],
+    "category": ["We do tailoring, stitching and alterations.", "We do tailoring, stitching and alterations."],
+    "hours": ["We're open most days.", "10am to 8pm Monday to Saturday, Sundays we're closed."],
+    "location": ["Shop no. 14, Gandhi Market, near the bus stand.", "Shop no. 14, Gandhi Market, near the bus stand."],
+    "contact": ["9876543210", "9876543210"],
+    "products_or_services": ["Stitching starts at 200 rupees a piece, alterations vary depending on the work.", "Stitching starts at 200 rupees a piece, alterations vary depending on the work."],
+    "policies": ["No returns on custom stitched clothes, we take 50% advance on big orders.", "No returns on custom stitched clothes, we take 50% advance on big orders."],
+    "free_text_notes": ["We've been in this shop for over 20 years.", "We've been in this shop for over 20 years."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Rajesh Tailors"},
+    "category": {"status": "confirmed", "value": "tailor"},
+    "hours": {"status": "confirmed", "value": {"mon_sat": "10:00-20:00", "sun": "closed"}},
+    "location": {"status": "confirmed", "value": "Shop no. 14, Gandhi Market, near the bus stand"},
+    "contact": {"status": "confirmed", "value": "9876543210"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "stitching", "price": "200 per piece", "notes": null},
+      {"name": "alterations", "price": "varies", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no returns on custom stitched clothes", "advance_payment": "50% advance on big orders"}},
+    "free_text_notes": {"status": "confirmed", "value": "In business over 20 years"}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "pharmacy_03",
+  "category": "pharmacy",
+  "language_style": "hinglish",
+  "description": "Hinglish throughout; location vague-then-resolved.",
+  "owner_script": {
+    "name": ["Apna Pharmacy hai.", "Apna Pharmacy hai."],
+    "category": ["Medical store hai, dawaiyan bechte hain.", "Medical store hai, dawaiyan bechte hain."],
+    "hours": ["Subah 8 se raat 10 baje tak khula rehta hai, roz.", "Subah 8 se raat 10 baje tak khula rehta hai, roz."],
+    "location": ["Bazaar mein hain.", "Sector 15 market mein, dentist clinic ke bagal mein."],
+    "contact": ["9898989898", "9898989898"],
+    "products_or_services": ["Har tarah ki dawai milti hai, rate MRP ke hisaab se hota hai.", "Har tarah ki dawai milti hai, rate MRP ke hisaab se hota hai."],
+    "policies": ["Dawai wapas nahi hoti, prescription ke bina kuch medicine nahi dete.", "Dawai wapas nahi hoti, prescription ke bina kuch medicine nahi dete."],
+    "free_text_notes": ["Hum 24 hours emergency ke liye number bhi dete hain.", "Hum 24 hours emergency ke liye number bhi dete hain."]
+  },
+  "ground_truth": {
+    "name": {"status": "confirmed", "value": "Apna Pharmacy"},
+    "category": {"status": "confirmed", "value": "pharmacy"},
+    "hours": {"status": "confirmed", "value": {"all_days": "08:00-22:00"}},
+    "location": {"status": "confirmed", "value": "Sector 15 market, next to the dentist clinic"},
+    "contact": {"status": "confirmed", "value": "9898989898"},
+    "products_or_services": {"status": "confirmed", "value": [
+      {"name": "medicines", "price": "as per MRP", "notes": null}
+    ]},
+    "policies": {"status": "confirmed", "value": {"returns": "no returns", "prescription": "required for all medicines"}},
+    "free_text_notes": {"status": "confirmed", "value": "Provides a 24-hour emergency contact number"}
+  }
+}

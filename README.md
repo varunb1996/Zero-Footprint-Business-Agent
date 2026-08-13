@@ -64,10 +64,14 @@ limit — a full 20-case run makes 500+ calls and can hit it. `--resume`
 picks up exactly where a run left off using the saved per-case traces in
 `eval/results/`, at zero extra API cost for already-completed cases.
 
-**RAG demo (KB + WhatsApp layer)** — no live WhatsApp connection needed:
+**RAG demo (KB + WhatsApp layer)** — no live WhatsApp connection needed.
+`eval/results/` is gitignored, so run the eval harness at least once first
+(even `--limit 1`) to generate a trace to seed from:
 
 ```bash
-# seed the KB from an already-generated eval trace
+python eval/run_eval.py --limit 1   # generates eval/results/<run_id>/tailor_01.json
+
+# seed the KB from that trace
 python scripts/seed_kb_from_trace.py eval/results/<run_id>/tailor_01.json adaptive demo_tailor
 
 # ask it a customer question

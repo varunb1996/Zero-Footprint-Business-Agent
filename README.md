@@ -1,5 +1,7 @@
 # Conversational Business Intake Agent
 
+**[📄 Read the full capstone report](https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html)** — methodology, real eval results, and the scope/production-readiness discussion. *(Link goes live once GitHub Pages is enabled for this repo — see below. Until then, open [`docs/report.html`](docs/report.html) directly.)*
+
 An agent that interviews a small business owner in natural conversation
 (English/Hindi/Hinglish) and converts it into a structured, queryable
 knowledge base — deciding per turn whether to **extract** a value,
@@ -12,13 +14,6 @@ against a naive fixed-form baseline (`graph_baseline.py`) using a
 20-case eval set (`eval/cases/`). A thin KB store + RAG layer
 (`src/kb/`, `src/whatsapp/`) exists to prove the generated knowledge base
 is actually queryable.
-
-**Full write-up:** [`docs/report.html`](docs/report.html) — methodology,
-real eval results, and the scope/production-readiness discussion. Open it
-locally in a browser, or view it rendered on
-[GitHub Pages](https://varunb1996.github.io/Zero-Footprint-Business-Agent/report.html)
-once Pages is enabled for this repo (Settings → Pages → deploy from
-`main` / `docs`).
 
 ## Setup
 
